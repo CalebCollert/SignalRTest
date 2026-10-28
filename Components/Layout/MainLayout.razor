@@ -1,23 +1,45 @@
 ﻿@inherits LayoutComponentBase
 
-<div class="page">
-    <div class="sidebar">
-        <NavMenu />
-    </div>
+<MudThemeProvider Theme="_theme" />
+<MudPopoverProvider />
+<MudDialogProvider />
+<MudSnackbarProvider />
 
-    <main>
-        <div class="top-row px-4">
-            <a href="https://learn.microsoft.com/aspnet/core/" target="_blank">About</a>
-        </div>
+<div>
 
-        <article class="content px-4">
-            @Body
-        </article>
+    <main class="cozy-main">
+        @Body
     </main>
+
 </div>
 
-<div id="blazor-error-ui" data-nosnippet>
-    An unhandled error has occurred.
-    <a href="." class="reload">Reload</a>
-    <span class="dismiss">🗙</span>
-</div>
+@code {
+    private const string AppName = "my game space.";
+
+    private bool _night;
+
+    private static readonly MudTheme _theme = new()
+    {
+        PaletteLight = new PaletteLight
+        {
+            Primary = "#c29591",
+            Secondary = "#a3b19b",
+            Background = "#faf6f0",
+            Surface = "#ffffff",
+            TextPrimary = "#4a413f",
+            TextSecondary = "#8c7e7b",
+            ActionDefault = "#8c7e7b"
+        },
+        LayoutProperties = new LayoutProperties
+        {
+            DefaultBorderRadius = "20px"
+        },
+        Typography = new Typography
+        {
+            Default = new DefaultTypography
+            {
+                FontFamily = new[] { "Nunito", "system-ui", "sans-serif" }
+            }
+        }
+    };
+}
